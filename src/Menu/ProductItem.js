@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Box, Image, Badge, Button } from '@chakra-ui/core';
 
+import { NavLink } from 'react-router-dom';
+
 export default class ProductItem extends React.Component {
     render () {
       return (
@@ -21,8 +23,12 @@ export default class ProductItem extends React.Component {
               >{this.props.item.description}</Box>
 
 
-              <Box textAlign="center"><Button variantColor="blue" rightIcon="info-outline" mb='24px'>Подробнее</Button></Box>
-              <Box><Button w='100%' roundedTopLeft='0' roundedTopRight='0' variantColor="teal" rightIcon="small-add">Добавить в корзину</Button></Box>
+              <Box textAlign="center">
+                  <Button variantColor="blue" rightIcon="info-outline" mb='24px'>
+                      <NavLink to={`/product/${this.props.item.name}`}>Подробнее</NavLink>
+                  </Button>
+              </Box>
+                <Box><Button w='100%' roundedTopLeft='0' roundedTopRight='0' variantColor="teal" rightIcon="small-add">Добавить в корзину</Button></Box>
           </Box>
         </>
       );
