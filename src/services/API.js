@@ -3,12 +3,12 @@ import axios from 'axios';
 // import * as ActionTypes from '../actions/actionTypes';
 // import { clearAccessToken } from '../AsyncStorage';
 
-let baseURL = '';
+export let baseURL = '';
 
 if (process.env.NODE_ENV === 'production') {
   baseURL = 'https://letopark-development.herokuapp.com/api';
 } else {
-  baseURL = 'http://localhost:5000/api';
+  baseURL = 'http://192.168.0.104:5000/api';
 }
 
 const apiService = axios.create({

@@ -5,22 +5,13 @@ import { Box } from '@chakra-ui/core';
 export default class OrderItem extends React.Component {
     render () {
         const { orderItem } = this.props;
+        const totalPrice = orderItem.product.price * orderItem.quantity;
 
         return(
           <Box p='2'>
-            <p>
-              {orderItem.product.name}
-              {' '}
-              - 
-              {' '}
-              {orderItem.quantity}
-              {' '}
-              шт. - 
-              {' '}
-              {orderItem.product.price * orderItem.quantity}
-              {' '}
-              ₴
-            </p>
+            <i>
+              {`${orderItem.product.name} – ${orderItem.quantity} шт. – ${totalPrice} ₴`}
+            </i>
           </Box>
         );
 

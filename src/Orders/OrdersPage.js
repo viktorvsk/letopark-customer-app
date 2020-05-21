@@ -9,6 +9,8 @@ import Order from './Order';
 class OrdersPage extends React.Component {
     render () {
         const { orders } = this.props;
+        const activeOrders = orders.filter(order => ['new', 'in_progress', 'ready'].includes(order.status));
+        const oldOrders = orders.filter(order => ['completed', 'canceled_by_waiter', 'canceled_by_customer'].includes(order.status));
 
         if (!orders.length) { return <Box p='8'>Нет заказов</Box>; }
 
@@ -22,12 +24,12 @@ class OrdersPage extends React.Component {
               <TabPanels>
                 <TabPanel>
                   <Box>
-                    {orders.filter(order => order.status === 'new').map(order => <Order order={order} key={order.code} />)}
+                    {activeOrders.map(order => <Order order={order} key={order.code} />)}
                   </Box>
                 </TabPanel>
                 <TabPanel>
                   <Box>
-                    {orders.filter(order => order.status !== 'new').map(order => <Order order={order} key={order.code} />)}
+                    {oldOrders.map(order => <Order order={order} key={order.code} />)}
                   </Box>
                 </TabPanel>
               </TabPanels>
