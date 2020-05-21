@@ -1,24 +1,25 @@
 import React from 'react';
 
-import { Box } from '@chakra-ui/core';
-import ProductsList from './ProductsList';
+import { Flex, SimpleGrid, Image, Icon } from '@chakra-ui/core';
 
+import { NavLink } from 'react-router-dom';
 
 export default class Store extends React.Component {
     render () {
-      const {name, items } = this.props;
+      const {id, name, items} = this.props;
 
       return (
-        <Box mb='16'>
-          <Box textAlign='center' fontWeight='bold' pl='8' pr='8' fontSize='24px'>
-            {name}
-            {' '}
-            (
-            {items.length}
-            )
-          </Box>
-          <ProductsList items={items} />
-        </Box>
+        <NavLink to={`/store/${id}`}>
+          <SimpleGrid columns={3} padding={8} w='100%' h='100px' mb='8'>
+            <Flex align='center' justify='flex-start'>
+              <Image src={items[0].image} rounded='full' h='100px'/>
+            </Flex>
+            <Flex align='center' justify='center'>{name}</Flex>
+            <Flex align='center' justify='flex-end'>
+                <Icon name='chevron-right' size='8' />
+            </Flex>
+          </SimpleGrid>
+        </NavLink>
       );
 
     }

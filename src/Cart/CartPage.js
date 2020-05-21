@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 
 import { withRouter } from "react-router"; // Fng JS bs
 
-
 import { Button, Box, SimpleGrid, EditablePreview, EditableInput, Editable } from '@chakra-ui/core';
 
 import { NavLink } from 'react-router-dom';
+
 import CartItem from './CartItem';
 
 import { submitOrder } from '../actions';
@@ -38,7 +38,7 @@ class CartPage extends React.Component {
               {' '}
               ₴
             </Box>
-            <SimpleGrid columns={2} spacing={5} p='4' position='fixed' bottom='0' w='100%'>
+            <SimpleGrid columns={2} spacing={5} p='4' position='fixed' bottom='0' w='100%' bg='white' borderTop='#eee solid 1px' zIndex='1000'>
               <Button w='100%' onClick={resetCartDispatched}>Отменить</Button>
               <Button w='100%' variantColor='pink' variant='solid' onClick={onSubmit}>Подтвердить</Button>
             </SimpleGrid>
@@ -46,7 +46,7 @@ class CartPage extends React.Component {
             <Box p='4' borderWidth='1px' m='4' rounded='lg'>
               <Editable
                 onSubmit={updateCartComment}
-                placeholder='Комментарий к заказу. Например, если хотите убрать какой-то определенный ингредиент, на который у вас аллергия'
+                placeholder='Комментарий к заказу. Укажите, пожалуйста, время, когда вы хотите, чтоб заказ был готов. Так же, можете уточнить, например, на какие ингредиенты у вас аллергия'
                 defaultValue=''
               >
                 <EditablePreview />

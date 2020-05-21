@@ -17,16 +17,9 @@ class ProductPage extends React.Component {
         return (
           <Box mb='8'>
             <Box textAlign='center' pt='4' pb='4' fontSize='24px'>{product.name}</Box>
-            <Image src={product.image} />
+            <Image src={product.image} w='100%' />
             <Box p='4'>
-              {cartItem && (
-              <Badge>
-                В корзине
-                {cartItem.qty}
-                {' '}
-                шт.
-              </Badge>
-)}
+              {cartItem && <Badge>{`В корзине ${cartItem.qty} шт.`}</Badge>}
             </Box>
             <Box p='4'>{product.description}</Box>
             <Box p='4'>

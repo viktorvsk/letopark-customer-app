@@ -1,9 +1,7 @@
 import React from 'react';
 
-
 import { Box } from '@chakra-ui/core';
 
-import Slider from 'react-slick';
 import ProductItem from './ProductItem';
 
 export default class ProductsList extends React.Component {
@@ -21,11 +19,7 @@ export default class ProductsList extends React.Component {
       const { items } = this.props;
 
       return (
-        <Box w='100%'>
-          <Slider {...settings}>
-            {items.map(item => <ProductItem item={item} key={item.id} />)}
-          </Slider>
-        </Box>
+        items.map(item => <ProductItem item={item} key={item.id} />)
       );
 
     }

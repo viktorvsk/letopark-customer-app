@@ -6,6 +6,7 @@ import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MenuPage from './Menu/MenuPage';
+import StorePage from './Menu/StorePage';
 import CartPage from './Cart/CartPage';
 import ProductPage from './Product/ProductPage';
 import AboutPage from './About/AboutPage';
@@ -13,9 +14,6 @@ import OrdersPage from './Orders/OrdersPage';
 import Navbar from './components/Navbar';
 
 import { loadStores, loadOrders } from './actions';
-
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 class App extends React.Component {
 
@@ -38,6 +36,7 @@ class App extends React.Component {
             <Route path='/cart' component={CartPage} />
             <Route path='/orders' component={OrdersPage} />
             <Route path='/product/:id' component={ProductPage} />
+            <Route path='/store/:id' component={StorePage} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>

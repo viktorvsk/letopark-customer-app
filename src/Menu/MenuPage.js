@@ -11,16 +11,7 @@ class MenuPage extends React.Component {
         const { stores } = this.props;
 
         return (
-          <Box mb='8'>
-            {stores.map((store, index) => {
-                    return (
-                      <Box key={store.name}>
-                        <Store name={store.name} items={store.products} key={store.name} />
-                        {(index + 1 !== stores.length) && <hr />}
-                      </Box>
-);
-                })}
-          </Box>
+          stores.map((store, index) => <Store name={store.name} id={store.id} items={store.products} key={store.name} />)
         );
 
     }
