@@ -3,7 +3,6 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import { Box } from '@chakra-ui/core';
 import Store from './Store';
 
 class MenuPage extends React.Component {

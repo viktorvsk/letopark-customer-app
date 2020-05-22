@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Badge, Progress, SimpleGrid, Flex } from '@chakra-ui/core';
+import { Box, Progress, SimpleGrid, Flex } from '@chakra-ui/core';
 
 import OrderItem from './OrderItem';
 

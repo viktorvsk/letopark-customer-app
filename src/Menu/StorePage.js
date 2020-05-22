@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 
 import { Box, Icon, Flex } from '@chakra-ui/core';
 
-import Store from './Store';
-
 import ProductsList from './ProductsList';
 
 import { NavLink } from 'react-router-dom';
