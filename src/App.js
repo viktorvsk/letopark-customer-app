@@ -16,12 +16,26 @@ import Navbar from './components/Navbar';
 import { loadStores, loadOrders } from './actions';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { ordersSyncInterval: null };
+  }
 
   componentDidMount() {
     const {loadStoresDispatched, loadOrdersDispatched} = this.props;
 
+    const ordersSyncInterval = setInterval(loadOrdersDispatched, 5000);
+
+    this.setState({ ordersSyncInterval });
+
     loadStoresDispatched();
     loadOrdersDispatched();
+  }
+
+  componentWillUnmount() {
+    const { ordersSyncInterval } = this.state;
+    clearInterval(ordersSyncInterval);
   }
 
   render () {
