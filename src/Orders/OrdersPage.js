@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 
 import { Box, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/core';
 
+import {cancelOrder} from '../actions';
+
 import Order from './Order';
 
 class OrdersPage extends React.Component {
     render () {
-        const { orders } = this.props;
+        const { orders, cancelOrderDispatched } = this.props;
         const activeOrders = orders.filter(order => ['new', 'in_progress', 'ready'].includes(order.status));
         const oldOrders = orders.filter(order => ['completed', 'canceled_by_waiter', 'canceled_by_customer'].includes(order.status));
-
-        if (!orders.length) { return <Box p='8'>Нет заказов</Box>; }
 
         return(
           <Box>
@@ -24,12 +24,14 @@ class OrdersPage extends React.Component {
               <TabPanels>
                 <TabPanel>
                   <Box>
-                    {activeOrders.map(order => <Order order={order} key={order.code} />)}
+                    {!activeOrders.length && <Box p='8'>Пусто</Box>}
+                    {activeOrders.map(order => <Order onCancel={cancelOrderDispatched} order={order} key={order.code} />)}
                   </Box>
                 </TabPanel>
                 <TabPanel>
                   <Box>
-                    {oldOrders.map(order => <Order order={order} key={order.code} />)}
+                    {!oldOrders.length && <Box p='8'>Пусто</Box>}
+                    {oldOrders.map(order => <Order onCancel={cancelOrderDispatched} order={order} key={order.code} />)}
                   </Box>
                 </TabPanel>
               </TabPanels>
@@ -46,8 +48,9 @@ function mapStateToProps (state) {
     };
 }
 
-function mapDispatchToProps () {
+function mapDispatchToProps (dispatch) {
   return {
+    cancelOrderDispatched: (order) => dispatch(cancelOrder(order))
   };
 }
 

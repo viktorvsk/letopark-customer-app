@@ -16,7 +16,7 @@ export default class Store extends React.Component {
             </Flex>
             <Flex align='center' justify='center'>{name}</Flex>
             <Flex align='center' justify='flex-end'>
-                <Icon name='chevron-right' size='8' />
+              <Icon name='chevron-right' size='8' />
             </Flex>
           </SimpleGrid>
         </NavLink>

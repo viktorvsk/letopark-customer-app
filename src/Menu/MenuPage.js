@@ -10,7 +10,7 @@ class MenuPage extends React.Component {
         const { stores } = this.props;
 
         return (
-          stores.map((store, index) => <Store name={store.name} id={store.id} items={store.products} key={store.name} />)
+          stores.map((store) => <Store name={store.name} id={store.id} items={store.products} key={store.name} />)
         );
 
     }

@@ -3,13 +3,7 @@ import axios from 'axios';
 // import * as ActionTypes from '../actions/actionTypes';
 // import { clearAccessToken } from '../AsyncStorage';
 
-export let baseURL = '';
-
-if (process.env.NODE_ENV === 'production') {
-  baseURL = 'https://letopark-development.herokuapp.com/api';
-} else {
-  baseURL = 'http://localhost:5000/api';
-}
+export const baseURL = (process.env.NODE_ENV === 'production') ? 'https://letopark-development.herokuapp.com/api' : 'http://192.168.0.103:5000';
 
 const apiService = axios.create({
   baseURL,
@@ -28,15 +22,19 @@ export default class API {
   }
 
   static getStores() {
-    return apiService.get('/v1/stores');
+    return apiService.get('/api/v1/stores');
   }
 
   static getOrders() {
-    return apiService.get('/v1/orders');
+    return apiService.get('/api/v1/orders');
   }
 
   static submitOrder(order) {
-    return apiService.post('/v1/orders', { order });
+    return apiService.post('/api/v1/orders', { order });
+  }
+
+  static cancelOrder(id) {
+    return apiService.delete(`/api/v1/orders/${id}`);
   }
 }
 

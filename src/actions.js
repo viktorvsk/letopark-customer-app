@@ -19,3 +19,11 @@ export function submitOrder(history) { // Fng JS bs
         });
     };
 }
+
+export function cancelOrder (order) {
+    return dispatch => {
+        API.cancelOrder(order.code).then(payload => {
+            dispatch({type: 'GET_ORDERS_SUCCESS', orders: payload.data});
+        });
+    };
+}

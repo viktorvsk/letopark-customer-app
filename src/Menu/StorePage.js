@@ -4,29 +4,27 @@ import { connect } from 'react-redux';
 
 import { Box, Icon, Flex } from '@chakra-ui/core';
 
-import ProductsList from './ProductsList';
-
 import { NavLink } from 'react-router-dom';
-
+import ProductsList from './ProductsList';
 
 class StorePage extends React.Component {
     render () {
         const { match: { params: {id} } } = this.props;
         const { stores } = this.props;
-        const store = stores.filter(store => store.id === parseInt(id, 10))[0];
+        const store = stores.filter(s => s.id === parseInt(id, 10))[0];
 
-        if (!store) { return null }
+        if (!store) { return null; }
 
 
         return (
-            <Box>
-                <Flex pl='4' align='center'>
-                    <NavLink to='/menu'>
-                        <Icon name='chevron-left' size='8'/>
-                    </NavLink>
-                </Flex>
-                <ProductsList items={store.products} />
-            </Box>
+          <Box>
+            <Flex pl='4' align='center'>
+              <NavLink to='/menu'>
+                <Icon name='chevron-left' size='8' />
+              </NavLink>
+            </Flex>
+            <ProductsList items={store.products} />
+          </Box>
         );
 
     }
