@@ -1,5 +1,6 @@
 const initialState = {
-    stores: []
+    stores: [],
+    searchQuery: ''
 };
 
 export default function menuReducer(state = initialState, action = {}) {
@@ -8,6 +9,11 @@ export default function menuReducer(state = initialState, action = {}) {
         return {
             ...state,
             stores: action.stores
+        };
+    case 'SEARCH_MENU':
+        return {
+            ...state,
+            searchQuery: action.searchQuery
         };
     default:
         return state;
