@@ -3,10 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Box, Image, Button, Badge } from '@chakra-ui/core';
+import { addProduct } from '../actions';
+
 
 class ProductPage extends React.Component {
     render () {
-        const { match: { params: {id} }, addProduct } = this.props;
+        const { match: { params: {id} }, addProductDispatched } = this.props;
         const {cartItems, stores} = this.props;
         const products = stores.map(store => store.products).flat();
         const product = products.filter(p => p.id === parseInt(id, 10))[0];
@@ -30,7 +32,7 @@ class ProductPage extends React.Component {
               Примечания:
               {product.tags.map(tag => <Box key={tag}><Badge>{tag}</Badge></Box>)}
             </Box>
-            <Button onClick={() => addProduct(product)} rightIcon='small-add' w='100%'>Добавить в корзину</Button>
+            <Button onClick={() => addProductDispatched(product)} rightIcon='small-add' w='100%'>Добавить в корзину</Button>
           </Box>
         );
 
@@ -46,7 +48,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    addProduct: (item) => dispatch(() => dispatch({type: 'CART_ADD_PRODUCT', product: item }))
+    addProductDispatched: (product) => dispatch(addProduct(product))
   };
 }
 

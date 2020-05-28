@@ -2,9 +2,6 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import { Box, Icon, Flex } from '@chakra-ui/core';
-
-import { NavLink } from 'react-router-dom';
 import ProductsList from './ProductsList';
 
 class StorePage extends React.Component {
@@ -16,16 +13,7 @@ class StorePage extends React.Component {
         if (!store) { return null; }
 
 
-        return (
-          <Box>
-            <Flex pl='4' align='center'>
-              <NavLink to='/menu'>
-                <Icon name='chevron-left' size='8' />
-              </NavLink>
-            </Flex>
-            <ProductsList items={store.products} />
-          </Box>
-        );
+        return <ProductsList items={store.products} />;
 
     }
 }

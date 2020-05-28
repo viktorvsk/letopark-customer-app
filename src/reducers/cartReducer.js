@@ -4,6 +4,9 @@ const initialState = {
 };
 export default function cartReducer(state = initialState, action = {}) {
   switch (action.type) {
+    case 'LOAD_CART': {
+      return action.cart || state;
+    }
     case 'CART_ADD_PRODUCT': {
       const itemToAdd = state.items.filter(item => item.product.id === action.product.id)[0];
 
@@ -52,7 +55,8 @@ export default function cartReducer(state = initialState, action = {}) {
     case 'CART_SUBMIT_ORDER': {
       return {
         ...state,
-        items: []
+        items: [],
+        comment: ''
       };
     }
     default: {

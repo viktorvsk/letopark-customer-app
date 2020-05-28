@@ -6,10 +6,12 @@ import { Box, SimpleGrid, Flex, Image, Button } from '@chakra-ui/core';
 
 import { NavLink } from 'react-router-dom';
 
+import { addProduct } from '../actions';
+
 class SearchItem extends React.Component {
     onAddProduct = () => {
-      const {addProduct, product} = this.props;
-      addProduct(product);
+      const {addProductDispatched, product} = this.props;
+      addProductDispatched(product);
     }
 
     render () {
@@ -31,7 +33,7 @@ class SearchItem extends React.Component {
               ₴
             </Flex>
             <Flex align='center' justify='center'>
-              <Button variant='outline' onClick={this.onAddProduct}>Заказать</Button>
+              <Button variant='outline' onClick={this.onAddProduct}>Добавить</Button>
             </Flex>
           </SimpleGrid>
         </Box>
@@ -46,7 +48,7 @@ function mapStateToProps () {
 
 function mapDispatchToProps (dispatch) {
   return {
-    addProduct: (product) => dispatch(() => dispatch({type: 'CART_ADD_PRODUCT', product }))
+    addProductDispatched: (product) => dispatch(addProduct(product))
   };
 }
 

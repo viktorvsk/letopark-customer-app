@@ -13,7 +13,7 @@ import AboutPage from './About/AboutPage';
 import OrdersPage from './Orders/OrdersPage';
 import Navbar from './components/Navbar';
 
-import { loadStores, loadOrders } from './actions';
+import { loadStores, loadOrders, loadCart } from './actions';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const {loadStoresDispatched, loadOrdersDispatched} = this.props;
+    const {loadStoresDispatched, loadOrdersDispatched, loadCartDispatched} = this.props;
 
     const ordersSyncInterval = setInterval(loadOrdersDispatched, 5000);
 
@@ -31,6 +31,7 @@ class App extends React.Component {
 
     loadStoresDispatched();
     loadOrdersDispatched();
+    loadCartDispatched();
   }
 
   componentWillUnmount() {
@@ -65,7 +66,8 @@ function mapStateToProps() {
 function mapDispatchToProps(dispatch) {
   return {
     loadStoresDispatched: () => dispatch(loadStores()),
-    loadOrdersDispatched: () => dispatch(loadOrders())
+    loadOrdersDispatched: () => dispatch(loadOrders()),
+    loadCartDispatched: () => dispatch(loadCart())
   };
 }
 

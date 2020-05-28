@@ -5,10 +5,12 @@ import { Box, Image, Badge, Button } from '@chakra-ui/core';
 
 import { NavLink } from 'react-router-dom';
 
+import { addProduct } from '../actions';
+
 class ProductItem extends React.Component {
     onAddProduct = () => {
-      const {addProduct, item} = this.props;
-      addProduct(item);
+      const {addProductDispatched, item} = this.props;
+      addProductDispatched(item);
     }
 
     render () {
@@ -48,7 +50,7 @@ function mapStateToProps () {
 
 function mapDispatchToProps (dispatch) {
   return {
-    addProduct: (item) => dispatch(() => dispatch({type: 'CART_ADD_PRODUCT', product: item }))
+    addProductDispatched: (product) => dispatch(addProduct(product))
   };
 }
 

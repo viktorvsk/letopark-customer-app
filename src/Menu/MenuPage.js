@@ -14,10 +14,19 @@ import { connect } from 'react-redux';
 import Store from './Store';
 import SearchItem from './SearchItem';
 
-class MenuPage extends React.Component {
-  onSearchChanged = (event) => this.props.searchMenuDispatched(event.target.value)
+import { searchMenu } from '../actions';
 
-  onSearchReset = () => this.props.searchMenuDispatched('')
+class MenuPage extends React.Component {
+  onSearchChanged = (event) => {
+    const { searchMenuDispatched } = this.props;
+
+    searchMenuDispatched(event.target.value);
+  }
+
+  onSearchReset = () => {
+    const { searchMenuDispatched } = this.props;
+    searchMenuDispatched('');
+  }
 
     render () {
         const { stores, searchQuery } = this.props;
@@ -60,7 +69,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
     return {
-      searchMenuDispatched: (searchQuery) => dispatch({type: 'SEARCH_MENU', searchQuery})
+      searchMenuDispatched: (searchQuery) => dispatch(searchMenu(searchQuery))
     };
 }
 

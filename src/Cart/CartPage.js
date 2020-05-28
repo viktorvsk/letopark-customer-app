@@ -10,11 +10,11 @@ import { NavLink } from 'react-router-dom';
 
 import CartItem from './CartItem';
 
-import { submitOrder } from '../actions';
+import { submitOrder, addProduct, removeProduct, cartComment, resetCart } from '../actions';
 
 class CartPage extends React.Component {
     render () {
-        const { items, resetCartDispatched, submitOrderDispatched, addProductDispatched, removeProductDispatched, updateCartComment } = this.props;
+        const { items, comment, resetCartDispatched, submitOrderDispatched, addProductDispatched, removeProductDispatched, updateCartComment } = this.props;
 
         const { history } = this.props; // Fng JS bs
         const onSubmit = () => submitOrderDispatched(history); // Fng JS bs
@@ -45,7 +45,8 @@ class CartPage extends React.Component {
 
             <Box p='4' borderWidth='1px' m='4' rounded='lg'>
               <Editable
-                onSubmit={updateCartComment}
+                value={comment}
+                onChange={updateCartComment}
                 placeholder='Комментарий к заказу. Укажите, пожалуйста, время, когда вы хотите, чтоб заказ был готов. Так же, можете уточнить, например, на какие ингредиенты у вас аллергия'
                 defaultValue=''
               >
@@ -62,17 +63,18 @@ class CartPage extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    items: state.cart.items
+    items: state.cart.items,
+    comment: state.cart.comment
   };
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     submitOrderDispatched: (history) => dispatch(submitOrder(history)),
-    updateCartComment: (comment) => dispatch({type: 'CART_COMMENT', comment}),
-    resetCartDispatched: () => dispatch(() => dispatch({type: 'RESET_CART'})),
-    addProductDispatched: (product) => dispatch(() => dispatch({type: 'CART_ADD_PRODUCT', product })),
-    removeProductDispatched: (product) => dispatch(() => dispatch({type: 'CART_REMOVE_PRODUCT', product })),
+    updateCartComment: (comment) => dispatch(cartComment(comment)),
+    resetCartDispatched: () => dispatch(resetCart()),
+    addProductDispatched: (product) => dispatch(addProduct(product)),
+    removeProductDispatched: (product) => dispatch(removeProduct(product)),
   };
 }
 
