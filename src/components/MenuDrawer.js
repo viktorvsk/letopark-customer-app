@@ -25,6 +25,7 @@ function MenuDrawer(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const { orders } = props;
+  const activeOrders = orders.filter(order => ['new', 'in_progress', 'ready'].includes(order.status));
 
   return (
     <>
@@ -53,7 +54,7 @@ function MenuDrawer(props) {
               <ListItem>
                 <NavLink to='/orders'>
                   <Button w='100%'>
-                    {orders.length ? `Заказы (${orders.filter(order => ['new', 'in_progress', 'ready'].includes(order.status)).length})` : 'Заказы'}
+                    {activeOrders.length ? `Заказы (${activeOrders.length})` : 'Заказы'}
                   </Button>
                 </NavLink>
               </ListItem>
