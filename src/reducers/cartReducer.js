@@ -43,7 +43,8 @@ export default function cartReducer(state = initialState, action = {}) {
     case 'RESET_CART': {
       return {
         ...state,
-        items: []
+        items: [],
+        comment: ''
       };
     }
     case 'CART_COMMENT': {

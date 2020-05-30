@@ -4,12 +4,12 @@ function saveCartToLocalStorage(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-export function loadStores() {
-    return dispatch => API.getStores().then(payload => dispatch({type: 'GET_STORES_SUCCESS', stores: payload.data}));
+function saveStoresToLocalStorage(stores) {
+    localStorage.setItem('stores', JSON.stringify(stores));
 }
 
-export function loadOrders() {
-    return dispatch => API.getOrders().then(payload => dispatch({type: 'GET_ORDERS_SUCCESS', orders: payload.data}));
+function saveOrdersToLocalStorage(orders) {
+    localStorage.setItem('orders', JSON.stringify(orders));
 }
 
 export function cancelOrder (order) {
@@ -69,6 +69,36 @@ export function searchMenu(searchQuery) {
 
 export function loadCart() {
     const cart = localStorage.getItem('cart') && JSON.parse(localStorage.getItem('cart'));
-    console.log(cart);
+
     return dispatch => dispatch({type: 'LOAD_CART', cart});
+}
+
+export function loadStores() {
+    return dispatch => {
+        const stores = localStorage.getItem('stores') && JSON.parse(localStorage.getItem('stores'));
+
+        if (stores) {
+            dispatch({type: 'GET_STORES_SUCCESS', stores});
+        }
+
+        API.getStores().then(payload => {
+            saveStoresToLocalStorage(payload.data);
+            dispatch({type: 'GET_STORES_SUCCESS', stores: payload.data});
+        });
+    };
+}
+
+export function loadOrders() {
+    return dispatch => {
+        const orders = localStorage.getItem('orders') && JSON.parse(localStorage.getItem('orders'));
+
+        if (orders) {
+            dispatch({type: 'GET_ORDERS_SUCCESS', orders});
+        }
+
+        API.getOrders().then(payload => {
+            saveOrdersToLocalStorage(payload.data);
+            dispatch({type: 'GET_ORDERS_SUCCESS', orders: payload.data});
+        });
+    };
 }
