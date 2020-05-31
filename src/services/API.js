@@ -1,9 +1,6 @@
 import axios from 'axios';
-// import { store } from '../../App';
-// import * as ActionTypes from '../actions/actionTypes';
-// import { clearAccessToken } from '../AsyncStorage';
 
-export const baseURL = (process.env.NODE_ENV === 'production') ? 'https://letopark-development.herokuapp.com' : 'http://192.168.0.103:5000';
+export const baseURL = process.env.REACT_APP_BASE_URL;
 
 const apiService = axios.create({
   baseURL,
