@@ -25,6 +25,8 @@ function CartPage(props) {
     const btnRef = React.useRef();
     const cancelRef = React.useRef();
 
+    document.title = 'Летопарк – Корзина'
+
 
     if (!items.length) {
       return (

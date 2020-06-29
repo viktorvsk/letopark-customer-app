@@ -9,6 +9,10 @@ import {cancelOrder} from '../actions';
 import Order from './Order';
 
 class OrdersPage extends React.Component {
+    componentDidMount() {
+      document.title = 'Летопарк – Заказы'
+    }
+
     render () {
         const { orders, cancelOrderDispatched } = this.props;
         const activeOrders = orders.filter(order => ['new', 'in_progress', 'ready'].includes(order.status));

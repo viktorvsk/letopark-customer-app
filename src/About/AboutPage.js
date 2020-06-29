@@ -4,7 +4,8 @@ import { Box, Button } from '@chakra-ui/core';
 
 import { NavLink } from 'react-router-dom';
 
-export default class CheckoutButton extends React.Component {
+export default class AboutPage extends React.Component {
+    componentDidMount() { document.title = 'Летопарк – О нас' }
     render () {
         return(
           <Box p='8'>

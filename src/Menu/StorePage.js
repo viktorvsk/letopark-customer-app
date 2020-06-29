@@ -12,6 +12,8 @@ class StorePage extends React.Component {
 
         if (!store) { return null; }
 
+        document.title = `Летопарк – ${store.name}`
+
 
         return <ProductsList items={store.products} />;
 

@@ -11,6 +11,7 @@ import CartPage from './Cart/CartPage';
 import ProductPage from './Product/ProductPage';
 import AboutPage from './About/AboutPage';
 import OrdersPage from './Orders/OrdersPage';
+import ProfilePage from './Profile/ProfilePage';
 import Navbar from './components/Navbar';
 
 import { loadStores, loadOrders, loadCart } from './actions';
@@ -50,6 +51,7 @@ class App extends React.Component {
             <Route path='/menu' component={MenuPage} exact />
             <Route path='/cart' component={CartPage} />
             <Route path='/orders' component={OrdersPage} />
+            <Route path='/profile' component={ProfilePage} />
             <Route path='/product/:id' component={ProductPage} />
             <Route path='/store/:id' component={StorePage} />
           </Switch>

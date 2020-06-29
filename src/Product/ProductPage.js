@@ -16,6 +16,8 @@ class ProductPage extends React.Component {
 
         if (!product) return (null);
 
+        document.title = `Летопарк – ${product.name}`
+
         return (
           <Box mb='8'>
             <Box textAlign='center' pt='4' pb='4' fontSize='24px'>{product.name}</Box>

@@ -51,6 +51,8 @@ function MenuDrawer(props) {
               <br />
               <ListItem><NavLink to='/cart'><Button w='100%'>Корзина</Button></NavLink></ListItem>
               <br />
+              <ListItem><NavLink to='/profile'><Button w='100%'>Профиль</Button></NavLink></ListItem>
+              <br />
               <ListItem>
                 <NavLink to='/orders'>
                   <Button w='100%'>

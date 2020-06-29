@@ -28,36 +28,41 @@ class MenuPage extends React.Component {
     searchMenuDispatched('');
   }
 
-    render () {
-        const { stores, searchQuery } = this.props;
-        const products = stores.map(store => store.products).flat();
-        const filteredProducts = products.filter(product => {
-          const q = searchQuery.toLowerCase();
-          const shouldShow = product.name.toLowerCase().match(q) ||
-                            product.ingredients.filter(ingr => ingr.toLowerCase().match(q)).length ||
-                            product.tags.filter(tag => tag.toLowerCase().match(q)).length;
+  componentDidMount() { document.title = 'Летопарк – Меню' }
 
-          return shouldShow;
-        });
+  render () {
+      const { stores, searchQuery } = this.props;
+      const products = stores.map(store => store.products).flat();
+      const filteredProducts = products.filter(product => {
+        const q = searchQuery.toLowerCase();
+        const shouldShow = product.name.toLowerCase().match(q) ||
+                          product.ingredients.filter(ingr => ingr.toLowerCase().match(q)).length ||
+                          product.tags.filter(tag => tag.toLowerCase().match(q)).length;
 
-        return (
-          <Box>
-            <FormControl p='8'>
-              <InputGroup>
-                <Input value={searchQuery} placeholder='Поиск' onChange={this.onSearchChanged} />
-                {searchQuery && (
-                  <InputRightElement onClick={this.onSearchReset}>
-                    <Icon name="small-close" color='gray.500' />
-                  </InputRightElement>
-                )}
-              </InputGroup>
-            </FormControl>
-            { searchQuery.length ? filteredProducts.map(product => <SearchItem product={product} key={product.id} />) : 
-                                     stores.map((store) => <Store name={store.name} id={store.id} products={store.products} key={store.name} />) }
-          </Box>
-        );
+        return shouldShow;
+      });
 
-    }
+      const isSearchPresent = (!!searchQuery.length && !!filteredProducts.length)
+      const searchResults = isSearchPresent ? filteredProducts.map(product => <SearchItem product={product} key={product.id} />) : <Box p='8'>Не найдено</Box>
+
+      return (
+        <Box>
+          <FormControl p='8'>
+            <InputGroup>
+              <Input value={searchQuery} placeholder='Поиск' onChange={this.onSearchChanged} />
+              {searchQuery && (
+                <InputRightElement onClick={this.onSearchReset}>
+                  <Icon name="small-close" color='gray.500' />
+                </InputRightElement>
+              )}
+            </InputGroup>
+          </FormControl>
+          {!!searchQuery.length && searchResults}
+          {!searchQuery.length && stores.map((store) => <Store name={store.name} id={store.id} products={store.products} key={store.name} />) }
+        </Box>
+      );
+
+  }
 }
 
 function mapStateToProps (state) {
